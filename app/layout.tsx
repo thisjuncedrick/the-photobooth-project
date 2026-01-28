@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Geist_Mono, Inter } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { TailwindIndicator } from "@/components/tailwind-breakpoint";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "@/styles/globals.css";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,12 +19,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const IS_DEV_MODE = process.env.NODE_ENV === "development";
+
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang='en' suppressHydrationWarning>
+      {IS_DEV_MODE && (
+        <head>
+          <script
+            crossOrigin='anonymous'
+            src='//unpkg.com/react-scan/dist/auto.global.js'
+          ></script>
+        </head>
+      )}
+      <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
+        <ThemeProvider defaultTheme='light' attribute='class' disableTransitionOnChange>
+          <div className='min-h-dvh font-sans'>{children}</div>
+          {IS_DEV_MODE && <TailwindIndicator />}
+        </ThemeProvider>
       </body>
     </html>
   );
