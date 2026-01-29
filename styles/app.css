@@ -1,0 +1,108 @@
+.strip-container {
+  --final-scale: calc(var(--scale-factor) * 0.7);
+  --base-unit: calc(var(--img-width) * var(--final-scale));
+
+  --font-size-main: calc(var(--base-unit) * 0.08);
+  --font-size-sub: calc(var(--font-size-main) * 0.6);
+  --font-size-icon: calc(var(--font-size-main) * 1.5);
+
+  --strip-border-radius: calc(var(--base-unit) * 0.05);
+
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--base-unit) * 0.1);
+  gap: calc(var(--base-unit) * 0.05);
+  user-select: none;
+}
+
+@media (width >= 40rem) {
+  .strip-container {
+    --final-scale: calc(var(--scale-factor) * 0.8);
+  }
+}
+
+@media (width >= 64rem) {
+  .strip-container {
+    --final-scale: var(--scale-factor);
+  }
+}
+
+.strip-container .photo-wrapper {
+  aspect-ratio: 4/3;
+  width: var(--base-unit);
+  overflow: hidden;
+  background: black;
+}
+
+.photo-wrapper.is-rounded {
+  border-radius: var(--strip-border-radius);
+  overflow: hidden;
+}
+
+.photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.strip-header,
+.strip-footer {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.strip-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--base-unit) * 0.02);
+}
+
+.strip-header svg {
+  width: var(--font-size-icon);
+  height: var(--font-size-icon);
+}
+
+.strip-header .brand {
+  text-wrap: balance;
+  line-height: 1.1;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  font-size: var(--font-size-sub);
+}
+
+.strip-footer {
+  width: 100%;
+  max-width: var(--base-unit);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: calc(var(--base-unit) * 0.05);
+  margin-top: calc(var(--base-unit) * 0.05);
+}
+
+.strip-footer .strip-title {
+  font-size: var(--font-size-main);
+  text-wrap: balance;
+  line-height: 1.1;
+  text-align: center;
+  width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.strip-footer .strip-timestamp {
+  font-size: var(--font-size-sub);
+  opacity: 0.7;
+  width: 100%;
+}

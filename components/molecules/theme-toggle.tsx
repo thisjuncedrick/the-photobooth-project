@@ -1,6 +1,6 @@
 "use client";
 
-import { IconDeviceDesktop, IconMoonStars, IconSun } from "@tabler/icons-react";
+import { IconDeviceDesktop, IconMoon, IconMoonStars, IconSun } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 import { memo, useEffect, useState } from "react";
 
@@ -79,6 +79,40 @@ const ThemeToggle = memo(() => {
   );
 });
 
-ThemeToggle.displayName = "ThemeToggle";
+const ThemeToggleDev = () => {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-export { ThemeToggle };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const onThemeSwitch = () => {
+    const newTheme = resolvedTheme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+  };
+
+  if (!mounted) {
+    return (
+      <button
+        type='button'
+        className='bg-secondary fixed bottom-3 left-3 rounded-full border p-1'
+        disabled
+      >
+        <IconSun aria-hidden='true' />
+      </button>
+    );
+  }
+
+  return (
+    <button
+      type='button'
+      className='bg-secondary fixed bottom-3 left-3 z-999 rounded-full border p-1'
+      onClick={onThemeSwitch}
+    >
+      <IconSun className='hidden dark:inline-flex' aria-hidden='true' />
+      <IconMoon className='dark:hidden' />
+    </button>
+  );
+};
+export { ThemeToggle, ThemeToggleDev };

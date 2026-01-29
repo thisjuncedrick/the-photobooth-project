@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 
+import { ThemeToggleDev } from "@/components/molecules/theme-toggle";
 import { TailwindIndicator } from "@/components/tailwind-breakpoint";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -65,7 +66,12 @@ export default function RootLayout({
       <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider defaultTheme='light' attribute='class' disableTransitionOnChange>
           <div className='min-h-dvh font-sans'>{children}</div>
-          {IS_DEV_MODE && <TailwindIndicator />}
+          {IS_DEV_MODE && (
+            <>
+              <TailwindIndicator />
+              <ThemeToggleDev />
+            </>
+          )}
         </ThemeProvider>
       </body>
     </html>

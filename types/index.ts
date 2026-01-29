@@ -5,3 +5,5 @@ export interface Content {
   header: string;
   body: string;
 }
+
+export type FooterStyle = "isBold" | "isItalic" | "isUppercase";

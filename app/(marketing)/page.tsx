@@ -1,11 +1,13 @@
 import { IconArrowRight, IconRocket } from "@tabler/icons-react";
-import Image from "next/image";
-import { CSSProperties } from "react";
 
-import { AppIcon } from "@/components/atoms/icon";
 import { LinkButton } from "@/components/atoms/link-button";
 import { ReleaseBadge } from "@/components/molecules/release-badge";
 import { FeatureCard } from "@/components/organisms/feature-card";
+import {
+  PhotoStrip,
+  PhotoStripBranding,
+  PhotoStripImage,
+} from "@/components/organisms/photostrip";
 import { Separator } from "@/components/ui/separator";
 
 import { Marketing } from "@/config/marketing";
@@ -46,41 +48,31 @@ export default function HomePage() {
             </LinkButton>
           </div>
         </div>
+
         <div className='group bg-secondary flex items-center justify-center overflow-hidden p-18'>
-          <div
-            className={cn(
-              "strip-container bg-white text-black",
-              "shadow-2xl transition-transform duration-700",
-              "-rotate-2 group-hover:scale-[1.02] group-hover:rotate-1",
-            )}
-            style={{ "--img-width": "320px", "--scale-factor": 0.8 } as CSSProperties}
-            role='img'
-            aria-label='Sample photo strip showcase'
+          <PhotoStrip
+            className='text-primary -rotate-2 bg-white shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] group-hover:rotate-1'
+            style={{ "--img-width": "320px", "--scale-factor": 0.8 }}
           >
+            <PhotoStripBranding />
             {Marketing.Images.map((image, index) => (
-              <div
+              <PhotoStripImage
                 key={`${image.src}-${index}`}
-                className='photo-wrapper group/hero-photo bg-transparent!'
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  className={cn(
-                    "aspect-4/3 object-cover object-center",
-                    "opacity-90 mix-blend-luminosity brightness-90 contrast-200 grayscale",
-                    "transition-all duration-300 ease-in-out",
-                    "group-hover/hero-photo:opacity-100 group-hover/hero-photo:mix-blend-normal group-hover/hero-photo:brightness-100 group-hover/hero-photo:contrast-100 group-hover/hero-photo:grayscale-0",
-                  )}
-                  height={213}
-                  width={320}
-                />
-              </div>
+                src={image.src}
+                alt={image.alt}
+                className={cn(
+                  "aspect-4/3 object-cover object-center",
+                  "opacity-90 mix-blend-luminosity brightness-90 contrast-200 grayscale",
+                  "transition-all duration-300 ease-in-out",
+                  "group-hover/photo:opacity-100 group-hover/photo:mix-blend-normal group-hover/photo:brightness-100 group-hover/photo:contrast-100 group-hover/photo:grayscale-0",
+                )}
+                isRounded={true}
+                height={213}
+                width={320}
+              />
             ))}
-            <div className='strip-footer text-primary flex flex-col items-center text-center'>
-              <AppIcon />
-              <span className='strip-subtitle font-black uppercase'>{site.name}</span>
-            </div>
-          </div>
+            <footer className='strip-footer'></footer>
+          </PhotoStrip>
         </div>
       </section>
 
@@ -113,6 +105,7 @@ export default function HomePage() {
             <span className='block'>Any where.</span>
           </h2>
         </div>
+
         <div className='flex flex-col items-center justify-center gap-6 px-6 py-20 text-center sm:items-start sm:px-12 sm:text-left lg:px-18'>
           <p className='text-secondary-foreground text-lg leading-relaxed tracking-[0.08em] sm:text-2xl'>
             Ready to Capture? Start creating memorable photo strips in seconds. No setup
