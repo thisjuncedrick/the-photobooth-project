@@ -14,6 +14,7 @@ import { Button } from "../ui/button";
 import { Toggle } from "../ui/toggle";
 
 import { cn } from "@/lib/utils";
+import { useCameraStore } from "@/stores/camera-store";
 import { useImageStore } from "@/stores/image-store";
 import { useSettingsStore } from "@/stores/settings-store";
 
@@ -88,10 +89,15 @@ const ActionControls = () => {
 
 const CameraControls = () => {
   const photoCount = useSettingsStore((s) => s.settings.photoCount);
+
+  const { error, isVideoReady } = useCameraStore(
+    useShallow((s) => ({ error: s.error, isVideoReady: s.isVideoReady })),
+  );
+
   const imageCount = useImageStore((s) => s.images.length);
 
   const hasEnoughImages = imageCount >= Number(photoCount);
-  const canCapture = !hasEnoughImages;
+  const canCapture = !error && isVideoReady && !hasEnoughImages;
 
   if (!canCapture) return null;
 

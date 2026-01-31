@@ -1,4 +1,34 @@
+"use client";
+
+import { useCameraStore } from "@/stores/camera-store";
+
+const ErrorLabel = () => {
+  const error = useCameraStore((s) => s.error);
+  if (!error) return null;
+
+  return (
+    <div
+      className='pointer-events-none absolute inset-0 z-1 flex items-center justify-center p-3 lg:p-6'
+      role='alert'
+      aria-live='assertive'
+      aria-atomic='true'
+    >
+      <div className='rounded-md bg-black/80 px-3 py-2 text-center leading-relaxed tracking-[0.08em] text-white'>
+        <p className='text-destructive mb-3 line-clamp-5 text-sm uppercase sm:text-lg'>
+          {error.message}
+        </p>
+        <span className='text-destructive font-mono text-xs sm:text-sm'>
+          {error.name}
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const CountdownLabel = () => {
+  const error = useCameraStore((s) => s.error);
+  if (error) return null;
+
   return (
     <div
       className='pointer-events-none absolute inset-0 z-1 flex items-center justify-center p-3 lg:p-6'
@@ -15,6 +45,9 @@ const CountdownLabel = () => {
 };
 
 const FilterLabel = () => {
+  const error = useCameraStore((s) => s.error);
+  if (error) return null;
+
   return (
     <div
       className='pointer-events-none absolute inset-0 z-1 flex items-center justify-center p-3 lg:p-6'
@@ -30,4 +63,4 @@ const FilterLabel = () => {
   );
 };
 
-export { CountdownLabel, FilterLabel };
+export { CountdownLabel, ErrorLabel, FilterLabel };

@@ -18,9 +18,11 @@ import {
 import { Switch } from "../ui/switch";
 
 import { cn } from "@/lib/utils";
+import { useCameraStore } from "@/stores/camera-store";
 import { useImageStore } from "@/stores/image-store";
 import { useSettingsStore } from "@/stores/settings-store";
 import { BoothSettings } from "@/types";
+import { useBoothContext } from "../booth-provider";
 
 interface FieldWrapperProps {
   label: string;
@@ -99,26 +101,59 @@ export const RadioToggle = React.memo(
 /* ----------------------------------------------------------------------- */
 
 const CameraSelectInput = () => {
+  const { devices, activeDeviceId, error, isRefreshing } = useCameraStore(
+    useShallow((s) => ({
+      devices: s.devices,
+      activeDeviceId: s.activeDeviceId,
+      error: s.error,
+      isRefreshing: s.isRefreshing,
+    })),
+  );
+
+  const { refreshDevices, startStream } = useBoothContext();
+
   return (
     <FieldWrapper
       label='Camera Source'
       description='Primary video input for this session'
+      error={error?.message}
     >
       {(id) => (
         <div className='flex items-center gap-3'>
-          <Select>
+          <Select
+            value={activeDeviceId ?? "empty"}
+            onValueChange={startStream}
+            disabled={!!error || isRefreshing}
+          >
             <SelectTrigger id={id} className='flex-1'>
               <SelectValue placeholder='Select a camera' />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value='empty' aria-label='Refresh cameras' disabled>
-                No camera found
-              </SelectItem>
+              {devices.length > 0 ? (
+                devices.map((device) => (
+                  <SelectItem key={device.deviceId} value={device.deviceId}>
+                    {device.label || `Camera ${device.deviceId.slice(0, 5)}`}
+                  </SelectItem>
+                ))
+              ) : (
+                <SelectItem value='empty' aria-label='Refresh cameras' disabled>
+                  No camera found
+                </SelectItem>
+              )}
             </SelectContent>
           </Select>
 
-          <Button size='icon' variant='outline' className='shadow-none'>
-            <IconRefresh aria-hidden='true' />
+          <Button
+            size='icon'
+            variant='outline'
+            className='shadow-none'
+            onClick={refreshDevices}
+            disabled={isRefreshing}
+          >
+            <IconRefresh
+              className={isRefreshing ? "animate-spin" : ""}
+              aria-hidden='true'
+            />
           </Button>
         </div>
       )}

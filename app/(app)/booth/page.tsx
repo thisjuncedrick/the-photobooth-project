@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-import { CountdownLabel, FilterLabel } from "@/components/molecules/labels";
+import { CountdownLabel, ErrorLabel, FilterLabel } from "@/components/molecules/labels";
 import { VideoFeed } from "@/components/molecules/video-feed";
 import { CameraControls } from "@/components/organisms/camera-controls";
 import { FiltersList } from "@/components/organisms/filters-list";
@@ -40,6 +40,7 @@ export default function BoothPage() {
           aria-label='Camera feed'
         >
           <div className='relative aspect-4/3 w-full max-w-2xl bg-black'>
+            <ErrorLabel />
             <CountdownLabel />
             <FilterLabel />
             <CameraControls />
