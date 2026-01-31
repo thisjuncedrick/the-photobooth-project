@@ -1,11 +1,18 @@
-import { DefaultControls } from "../molecules/camera-control-inputs";
+import { ActionControls, CameraControls } from "../molecules/camera-control-inputs";
 
-const CameraControls = () => {
+const CameraControlContainer = () => {
   return (
     <div className='absolute inset-x-0 bottom-6 z-1'>
-      <DefaultControls />
+      <div
+        className='flex size-full items-center justify-evenly gap-3'
+        role='toolbar'
+        aria-label='Camera controls'
+      >
+        <CameraControls />
+        <ActionControls />
+      </div>
     </div>
   );
 };
 
-export { CameraControls };
+export { CameraControlContainer as CameraControls };

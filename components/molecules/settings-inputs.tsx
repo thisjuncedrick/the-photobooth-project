@@ -2,11 +2,9 @@
 
 import { IconRefresh } from "@tabler/icons-react";
 
-import { useImageStore } from "@/stores/image-store";
-import { useSettingsStore } from "@/stores/settings-store";
-import { BoothSettings } from "@/types";
 import React, { JSX, useId, useMemo } from "react";
 import { useShallow } from "zustand/shallow";
+
 import { Button } from "../ui/button";
 import { ButtonGroup } from "../ui/button-group";
 import { Field, FieldDescription, FieldError, FieldLabel } from "../ui/field";
@@ -19,6 +17,11 @@ import {
 } from "../ui/select";
 import { Switch } from "../ui/switch";
 
+import { cn } from "@/lib/utils";
+import { useImageStore } from "@/stores/image-store";
+import { useSettingsStore } from "@/stores/settings-store";
+import { BoothSettings } from "@/types";
+
 interface FieldWrapperProps {
   label: string;
   description?: string;
@@ -30,7 +33,6 @@ interface FieldWrapperProps {
 const FieldWrapper = React.memo(
   ({ label, description, error, orientation, children }: FieldWrapperProps) => {
     const id = useId();
-    const descriptionId = `${id}-description`;
 
     return (
       <Field className='gap-1.5' orientation={orientation}>
@@ -41,9 +43,7 @@ const FieldWrapper = React.memo(
           >
             {label}
           </FieldLabel>
-          {description && (
-            <FieldDescription id={descriptionId}>{description}</FieldDescription>
-          )}
+          {description && <FieldDescription>{description}</FieldDescription>}
         </div>
         {children(id)}
         {error && (
@@ -175,12 +175,19 @@ const PhotoCount = () => {
   return (
     <FieldWrapper label='Photo Count' description={description}>
       {(id) => (
-        <RadioToggle<BoothSettings["photoCount"]>
-          id={id}
-          onValueChange={(v) => setValue("photoCount", v)}
-          options={options}
-          value={value}
-        />
+        <div
+          className={cn({
+            "pointer-events-none cursor-not-allowed opacity-50": hasImages,
+          })}
+          aria-disabled={hasImages}
+        >
+          <RadioToggle<BoothSettings["photoCount"]>
+            id={id}
+            onValueChange={(v) => setValue("photoCount", v)}
+            options={options}
+            value={value}
+          />
+        </div>
       )}
     </FieldWrapper>
   );

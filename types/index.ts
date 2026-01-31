@@ -14,6 +14,4 @@ export type BoothSettings = {
   photoCount: "1" | "2" | "3" | "4";
   timer: "Off" | "3s" | "5s" | "8s";
   isFlashing: boolean;
-  tone: number;
-  size: number;
 };

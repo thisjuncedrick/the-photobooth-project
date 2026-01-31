@@ -6,12 +6,14 @@ import { CameraControls } from "@/components/organisms/camera-controls";
 import { FiltersList } from "@/components/organisms/filters-list";
 import { SessionGallery } from "@/components/organisms/session-gallery";
 
+import { LinkButton } from "@/components/atoms/link-button";
 import { cn } from "@/lib/utils";
+import { IconArrowLeft } from "@tabler/icons-react";
 
 export default function BoothPage() {
   return (
     <div
-      className='flex flex-col lg:h-dvh'
+      className='relative flex flex-col lg:h-dvh'
       style={
         {
           "--panel-min-height": "300px",
@@ -20,6 +22,14 @@ export default function BoothPage() {
         } as CSSProperties
       }
     >
+      <LinkButton
+        href='/'
+        variant='ghost'
+        className='text-primary hover:text-primary absolute top-3 left-3 z-10 w-fit justify-start lg:top-6 lg:left-6'
+      >
+        <IconArrowLeft aria-hidden='true' />
+        <span>Return to Home</span>
+      </LinkButton>
       <div className='flex min-h-0 flex-1 flex-col border-b lg:flex-row'>
         <main
           className={cn(

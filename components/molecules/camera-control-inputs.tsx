@@ -1,11 +1,20 @@
 "use client";
 
-import { IconBulb, IconCameraFilled, IconFlipVertical } from "@tabler/icons-react";
+import {
+  IconBulb,
+  IconCameraFilled,
+  IconCheck,
+  IconFlipVertical,
+  IconRotateClockwise,
+} from "@tabler/icons-react";
 import { useShallow } from "zustand/shallow";
 
+import { LinkButton } from "../atoms/link-button";
+import { Button } from "../ui/button";
 import { Toggle } from "../ui/toggle";
 
 import { cn } from "@/lib/utils";
+import { useImageStore } from "@/stores/image-store";
 import { useSettingsStore } from "@/stores/settings-store";
 
 const FlipToggle = () => {
@@ -52,13 +61,42 @@ const FlashToggle = () => {
   );
 };
 
-const DefaultControls = () => {
+const ActionControls = () => {
+  const { clearImages, imageCount } = useImageStore(
+    useShallow((s) => ({ clearImages: s.clearImages, imageCount: s.images.length })),
+  );
+  const photoCount = useSettingsStore((s) => s.settings.photoCount);
+
+  if (photoCount === undefined || imageCount < Number(photoCount)) return null;
+
   return (
-    <div
-      className='flex size-full items-center justify-evenly gap-3'
-      role='toolbar'
-      aria-label='Camera controls'
-    >
+    <>
+      <Button
+        variant='secondary'
+        size='icon'
+        className='rounded-full'
+        onClick={clearImages}
+      >
+        <IconRotateClockwise aria-hidden='true' />
+      </Button>
+      <LinkButton href='/print' size='icon' className='rounded-full'>
+        <IconCheck aria-hidden='true' />
+      </LinkButton>
+    </>
+  );
+};
+
+const CameraControls = () => {
+  const photoCount = useSettingsStore((s) => s.settings.photoCount);
+  const imageCount = useImageStore((s) => s.images.length);
+
+  const hasEnoughImages = imageCount >= Number(photoCount);
+  const canCapture = !hasEnoughImages;
+
+  if (!canCapture) return null;
+
+  return (
+    <>
       <FlipToggle />
 
       <button
@@ -74,8 +112,8 @@ const DefaultControls = () => {
       </button>
 
       <FlashToggle />
-    </div>
+    </>
   );
 };
 
-export { DefaultControls };
+export { ActionControls, CameraControls };

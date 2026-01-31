@@ -1,3 +1,25 @@
+import { type CustomizeStoreState } from "@/stores/customize-store";
+import type { BoothSettings } from "@/types";
+import { site } from "./site";
+
+export const Settings: BoothSettings = {
+  isBurstMode: false,
+  isMirrored: false,
+  photoCount: "3",
+  timer: "Off",
+  isFlashing: false,
+};
+
+export const CustomizerSettings: CustomizeStoreState = {
+  color: "#FFFFFF",
+  isRounded: false,
+  footerText: site.name,
+  footerStyle: ["isBold"],
+  isSupported: true,
+  isWhiteText: false,
+  hasTimestamp: false,
+};
+
 const PresetColors = [
   "#FFB3BA",
   "#FFDFBA",

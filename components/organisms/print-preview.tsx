@@ -12,6 +12,7 @@ import {
 
 import { getTimestamp } from "@/lib/utils";
 import { useCustomizeStore } from "@/stores/customize-store";
+import { useImageStore } from "@/stores/image-store";
 
 const StripHeader = () => {
   const isSupported = useCustomizeStore((s) => s.isSupported);
@@ -54,11 +55,7 @@ const StripFooter = () => (
 );
 
 const PhotoGallery = () => {
-  const images = [
-    "https://placehold.co/600x400/000000/png",
-    "https://placehold.co/600x400/000FFF/png",
-    "https://placehold.co/600x400/FF00FF/png",
-  ];
+  const images = useImageStore((s) => s.images);
   const isRounded = useCustomizeStore((s) => s.isRounded);
 
   return (

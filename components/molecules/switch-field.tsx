@@ -17,12 +17,7 @@ const SwitchField = ({
 
   return (
     <Field orientation={orientation}>
-      <Switch
-        id={id}
-        aria-describedby={labelId}
-        className="rounded-none **:data-[slot='switch-thumb']:rounded-none"
-        {...props}
-      />
+      <Switch id={id} aria-describedby={labelId} {...props} />
       <FieldLabel htmlFor={id} id={labelId}>
         {label}
       </FieldLabel>

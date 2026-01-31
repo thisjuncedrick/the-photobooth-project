@@ -1,13 +1,21 @@
 "use client";
 
 import { IconPhotoFilled, IconTrashFilled } from "@tabler/icons-react";
-import React, { HTMLAttributes, InputHTMLAttributes, useRef } from "react";
+import React, {
+  HTMLAttributes,
+  InputHTMLAttributes,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 
 import { Button } from "../ui/button";
 
 import { cn } from "@/lib/utils";
+import { useImageStore } from "@/stores/image-store";
 
 const UploadItem = () => {
+  const addImage = useImageStore((s) => s.addImage);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const acceptedFileType: InputHTMLAttributes<HTMLInputElement>["accept"] =
@@ -26,7 +34,7 @@ const UploadItem = () => {
     const isValid = validTypes.includes(file.type);
 
     if (isValid) {
-      alert("VALID");
+      addImage(URL.createObjectURL(file));
     } else {
       alert("Please upload a valid image file");
     }
@@ -98,13 +106,39 @@ const DeleteOverlayButton = ({
 
 const GalleryItem = ({
   className,
+  index,
   onDelete,
   ...props
-}: React.ComponentProps<"img"> & { onDelete: () => void }) => (
-  <li className='group bg-secondary focus-within:ring-ring/50 relative aspect-4/3 outline-none focus-within:ring-[3px]'>
-    <DeleteOverlayButton onDelete={onDelete} />
-    <img className={cn("size-full object-cover object-center", className)} {...props} />
-  </li>
-);
+}: React.ComponentProps<"img"> & {
+  onDelete: (index: number) => void;
+  index: number;
+}) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = useCallback(() => {
+    setIsDeleting(true);
+    setTimeout(() => onDelete(index), 400);
+  }, [onDelete, index]);
+
+  return (
+    <li
+      className={cn(
+        "group bg-secondary focus-within:ring-ring/50 relative aspect-4/3 outline-none focus-within:ring-[3px]",
+        "transition-all duration-400 ease-in-out",
+        {
+          "animate-in fade-in slide-in-from-top-10 lg:slide-in-from-left-10 lg:slide-in-from-top-0":
+            !isDeleting,
+        },
+        {
+          "pointer-events-none translate-y-10 opacity-0 lg:translate-x-10 lg:translate-y-0":
+            isDeleting,
+        },
+      )}
+    >
+      <DeleteOverlayButton onDelete={handleDelete} />
+      <img className={cn("size-full object-cover object-center", className)} {...props} />
+    </li>
+  );
+};
 
 export { GalleryItem, UploadItem };

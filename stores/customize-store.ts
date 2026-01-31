@@ -20,6 +20,7 @@ export interface CustomizeStoreActions {
   setIsSupported: (isSupported: boolean) => void;
   setIsWhiteText: (isWhiteText: boolean) => void;
   setHasTimestamp: (hasTimestamp: boolean) => void;
+  resetSettings: (state: CustomizeStoreState) => void;
 }
 
 export const useCustomizeStore = create<CustomizeStoreState & CustomizeStoreActions>(
@@ -40,5 +41,6 @@ export const useCustomizeStore = create<CustomizeStoreState & CustomizeStoreActi
     setIsSupported: (isSupported) => set({ isSupported }),
     setIsWhiteText: (isWhiteText) => set({ isWhiteText }),
     setHasTimestamp: (hasTimestamp) => set({ hasTimestamp }),
+    resetSettings: (customizerState) => set(customizerState),
   }),
 );
