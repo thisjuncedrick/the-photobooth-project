@@ -11,7 +11,7 @@ const FlashOverlay = () => {
   return (
     <div
       className={cn(
-        "pointer-events-none absolute inset-0 z-60 bg-white opacity-0 transition-opacity duration-300",
+        "pointer-events-none fixed inset-0 z-60 bg-white opacity-0 transition-opacity duration-300",
         { "opacity-100": isFlashing && isCapturing },
       )}
     ></div>
