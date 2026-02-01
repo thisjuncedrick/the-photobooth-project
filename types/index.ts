@@ -15,3 +15,10 @@ export type BoothSettings = {
   timer: "Off" | "3s" | "5s" | "8s";
   isFlashing: boolean;
 };
+
+export interface StripLayout {
+  minW: number;
+  maxW: number;
+  minScale: number;
+  maxScale: number;
+}

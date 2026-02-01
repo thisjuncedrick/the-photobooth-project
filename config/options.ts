@@ -1,5 +1,5 @@
 import { type CustomizeStoreState } from "@/stores/customize-store";
-import type { BoothSettings } from "@/types";
+import type { BoothSettings, StripLayout as StripLayoutConfig } from "@/types";
 import { site } from "./site";
 
 export const Settings: BoothSettings = {
@@ -58,6 +58,13 @@ export const CSSGramFilters = [
   "willow",
   "xpro2",
 ];
+
+export const StripLayout: StripLayoutConfig = {
+  minW: 300,
+  maxW: 500,
+  minScale: 0.9,
+  maxScale: 0.6,
+};
 
 export const CustomizerSettings: CustomizeStoreState = {
   color: "#FFFFFF",

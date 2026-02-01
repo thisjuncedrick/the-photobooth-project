@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import React, { CSSProperties } from "react";
 
 import { AppIcon } from "../atoms/icon";
 
@@ -52,14 +52,17 @@ interface PhotoStripProps {
   };
 }
 
-const PhotoStrip = ({ children, className, style }: PhotoStripProps) => (
-  <div
-    className={cn("strip-container transition-colors duration-300 ease-out", className)}
-    style={style}
-    aria-roledescription='Photo Strip'
-  >
-    {children}
-  </div>
+const PhotoStrip = React.forwardRef<HTMLDivElement, PhotoStripProps>(
+  ({ children, className, style }, ref) => (
+    <div
+      ref={ref}
+      className={cn("strip-container transition-colors duration-300 ease-out", className)}
+      style={style}
+      aria-roledescription='Photo Strip'
+    >
+      {children}
+    </div>
+  ),
 );
 
 export { PhotoStrip, PhotoStripBranding, PhotoStripImage, PhotoStripTitle };

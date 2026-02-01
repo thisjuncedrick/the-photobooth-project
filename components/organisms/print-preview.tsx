@@ -10,9 +10,11 @@ import {
   PhotoStripTitle,
 } from "./photostrip";
 
+import { usePrintPreview } from "@/hooks/use-print-preview";
 import { getTimestamp } from "@/lib/utils";
 import { useCustomizeStore } from "@/stores/customize-store";
 import { useImageStore } from "@/stores/image-store";
+import { useCustomizerContext } from "../customizer-provider";
 
 const StripHeader = () => {
   const isSupported = useCustomizeStore((s) => s.isSupported);
@@ -78,8 +80,10 @@ const PrintPreviewStrip = ({ children }: Readonly<{ children: React.ReactNode }>
   const { backgroundColor, isWhiteText } = useCustomizeStore(
     useShallow((s) => ({ backgroundColor: s.color, isWhiteText: s.isWhiteText })),
   );
+  const { containerRef } = useCustomizerContext();
 
-  const isCalculating = false;
+  const images = useImageStore((s) => s.images);
+  const { imgWidth, scaleFactor, isCalculating } = usePrintPreview(images[0]);
 
   if (isCalculating) return <p className='animate-pulse'>Generating preview...</p>;
 
@@ -87,11 +91,12 @@ const PrintPreviewStrip = ({ children }: Readonly<{ children: React.ReactNode }>
     <div className='border shadow-2xl' role='img'>
       <PhotoStrip
         style={{
-          "--img-width": "300px",
-          "--scale-factor": "0.8",
+          "--img-width": `${imgWidth}px`,
+          "--scale-factor": scaleFactor,
           backgroundColor,
           color: isWhiteText ? "#FFFFFF" : "#000000",
         }}
+        ref={containerRef}
       >
         {children}
       </PhotoStrip>

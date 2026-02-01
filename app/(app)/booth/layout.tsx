@@ -1,5 +1,8 @@
-import { BoothProvider } from "@/components/booth-provider";
 import React from "react";
+
+import { BoothProvider } from "@/components/booth-provider";
+
+import "@/styles/cssgram.min.css";
 
 export default function BoothLayout({
   children,

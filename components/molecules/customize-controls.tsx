@@ -27,6 +27,7 @@ import {
   type CustomizeStoreState,
   useCustomizeStore,
 } from "@/stores/customize-store";
+import { useCustomizerContext } from "../customizer-provider";
 
 const ColorInput = () => {
   const { color, setColor } = useCustomizeStore(
@@ -184,13 +185,20 @@ const MetadataControls = () => (
 /* ------------------------------------------------------------------------ */
 
 const ExportControls = () => {
+  const { onDownloadGifClick, onDownloadClick, onPrintClick } = useCustomizerContext();
+
   return (
     <section aria-labelledby='export-heading' className='flex flex-col gap-1.5'>
       <h3 id='export-heading' className='sr-only'>
         Export options
       </h3>
 
-      <Button size='lg' className='uppercase' aria-label='Download as PNG file'>
+      <Button
+        size='lg'
+        className='uppercase'
+        aria-label='Download as PNG file'
+        onClick={onDownloadClick}
+      >
         <IconDownload aria-hidden='true' />
         <span>Download .png</span>
       </Button>
@@ -200,6 +208,7 @@ const ExportControls = () => {
           variant='outline'
           className='flex-1'
           aria-label='Print document'
+          onClick={onPrintClick}
         >
           <IconPrinter aria-hidden='true' />
           <span>Print</span>
@@ -210,6 +219,7 @@ const ExportControls = () => {
           variant='outline'
           className='flex-1'
           aria-label='Download as GIF file'
+          onClick={onDownloadGifClick}
         >
           <IconGif aria-hidden='true' />
           <span>Download .GIF</span>

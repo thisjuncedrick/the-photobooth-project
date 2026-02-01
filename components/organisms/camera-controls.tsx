@@ -2,7 +2,7 @@ import { ActionControls, CameraControls } from "../molecules/camera-control-inpu
 
 const CameraControlContainer = () => {
   return (
-    <div className='absolute inset-x-0 bottom-6 z-1'>
+    <div className='absolute inset-x-0 bottom-6 z-30'>
       <div
         className='flex size-full items-center justify-evenly gap-3'
         role='toolbar'

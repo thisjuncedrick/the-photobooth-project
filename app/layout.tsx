@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
 
 import { ThemeToggleDev } from "@/components/molecules/theme-toggle";
 import { TailwindIndicator } from "@/components/tailwind-breakpoint";
 import { ThemeProvider } from "@/components/theme-provider";
 
+import { GeistMono, Inter } from "@/config/fonts";
 import { site } from "@/config/site";
 import "@/styles/globals.css";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -56,10 +53,6 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <head>
-        <link
-          rel='stylesheet'
-          href='https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css'
-        ></link>
         {IS_DEV_MODE && (
           <script
             crossOrigin='anonymous'
@@ -67,7 +60,7 @@ export default function RootLayout({
           ></script>
         )}
       </head>
-      <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${Inter.variable} ${GeistMono.variable} antialiased`}>
         <ThemeProvider defaultTheme='light' attribute='class' disableTransitionOnChange>
           <div className='min-h-dvh font-sans'>{children}</div>
           {IS_DEV_MODE && (

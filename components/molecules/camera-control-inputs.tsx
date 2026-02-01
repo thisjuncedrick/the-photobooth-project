@@ -157,7 +157,7 @@ const ActionControls = () => {
       >
         <IconRotateClockwise aria-hidden='true' />
       </Button>
-      <LinkButton href='/print' size='icon' className='rounded-full'>
+      <LinkButton href='/customize' size='icon' className='rounded-full'>
         <IconCheck aria-hidden='true' />
       </LinkButton>
     </>
