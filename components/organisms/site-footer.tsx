@@ -17,7 +17,7 @@ const SiteFooter = () => {
       <div className='container_ border-x'>
         <div className='flex flex-col items-center justify-between gap-4 px-6 py-12 sm:flex-row sm:px-12 lg:px-18'>
           <div className='flex flex-col items-center gap-x-4 gap-y-2 sm:flex-row'>
-            <AppIcon size='var(--text-7xl)' className='text-primary' aria-hidden='true' />
+            <AppIcon className='text-primary size-(--text-7xl)' aria-hidden='true' />
             <p className='leading-none font-bold tracking-tight uppercase sm:w-10'>
               {site.heroTitle}
             </p>

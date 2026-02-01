@@ -19,8 +19,7 @@ const FeatureCard = ({
     </span>
     <Icon
       aria-hidden='true'
-      size='var(--text-5xl)'
-      className='text-primary mx-auto sm:mr-auto sm:ml-0'
+      className='text-primary mx-auto size-(--text-5xl) sm:mr-auto sm:ml-0'
     />
     <h3 className='mb-6 text-3xl font-bold tracking-tight'>{header}</h3>
     <p

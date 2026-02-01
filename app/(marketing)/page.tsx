@@ -117,7 +117,7 @@ export default function HomePage() {
             className='bg-foreground hover:bg-foreground/90 text-background h-14 justify-start p-5 text-lg uppercase lg:w-full'
           >
             <span>Launch Photobooth</span>
-            <IconArrowRight aria-hidden='true' size='var(--text-xl)' />
+            <IconArrowRight className='size-(--text-xl)' aria-hidden='true' />
           </LinkButton>
         </div>
       </section>
