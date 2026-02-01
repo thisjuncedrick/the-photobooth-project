@@ -74,6 +74,13 @@ export const useExport = (
         interval: 0.5,
         numWorkers: 2,
         imagePlacement: "cover",
+
+        text: site.name.toUpperCase(),
+        textAlign: "right",
+        textBaseline: "bottom",
+        fontColor: "rgba(255,255,255,0.6)",
+        fontFamily: "sans-serif",
+        fontWeight: "bold",
       },
       (obj: any) => {
         if (!obj.error) {

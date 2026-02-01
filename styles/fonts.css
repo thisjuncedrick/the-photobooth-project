@@ -1,0 +1,33 @@
+/* Inter Font Family */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter/Inter_28pt-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter/Inter_28pt-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter/Inter_28pt-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Geist Mono Font Family */
+@font-face {
+  font-family: "GeistMono";
+  src: url("/fonts/geist_mono/GeistMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Re-assign the variables exactly as they were before */
+:root {
+  --font-sans: "Inter", sans-serif;
+  --font-geist-mono: "GeistMono", monospace;
+}
