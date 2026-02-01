@@ -6,6 +6,7 @@ import { CameraControls } from "@/components/organisms/camera-controls";
 import { FiltersList } from "@/components/organisms/filters-list";
 import { SessionGallery } from "@/components/organisms/session-gallery";
 
+import { FlashOverlay } from "@/components/atoms/flash-overlay";
 import { LinkButton } from "@/components/atoms/link-button";
 import { cn } from "@/lib/utils";
 import { IconArrowLeft } from "@tabler/icons-react";
@@ -22,6 +23,7 @@ export default function BoothPage() {
         } as CSSProperties
       }
     >
+      <FlashOverlay />
       <LinkButton
         href='/'
         variant='ghost'

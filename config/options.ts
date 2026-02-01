@@ -7,7 +7,7 @@ export const Settings: BoothSettings = {
   isMirrored: false,
   photoCount: "3",
   timer: "Off",
-  isFlashing: false,
+  isFlashing: true,
 };
 
 export const CameraError = {
@@ -30,6 +30,34 @@ export const CameraError = {
     message: "We couldn't find any video input devices connected to this device.",
   },
 } as const satisfies Record<string, Error>;
+
+export const CSSGramFilters = [
+  "default",
+  "_1977",
+  "aden",
+  "brannan",
+  "brooklyn",
+  "clarendon",
+  "earlybird",
+  "gingham",
+  "hudson",
+  "inkwell",
+  "kelvin",
+  "lark",
+  "lofi",
+  "mayfair",
+  "moon",
+  "nashville",
+  "perpetua",
+  "reyes",
+  "rise",
+  "slumber",
+  "toaster",
+  "valencia",
+  "walden",
+  "willow",
+  "xpro2",
+];
 
 export const CustomizerSettings: CustomizeStoreState = {
   color: "#FFFFFF",

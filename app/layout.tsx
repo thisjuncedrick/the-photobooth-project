@@ -55,14 +55,18 @@ export default function RootLayout({
 
   return (
     <html lang='en' suppressHydrationWarning>
-      {IS_DEV_MODE && (
-        <head>
+      <head>
+        <link
+          rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/cssgram/0.1.10/cssgram.min.css'
+        ></link>
+        {IS_DEV_MODE && (
           <script
             crossOrigin='anonymous'
             src='//unpkg.com/react-scan/dist/auto.global.js'
           ></script>
-        </head>
-      )}
+        )}
+      </head>
       <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider defaultTheme='light' attribute='class' disableTransitionOnChange>
           <div className='min-h-dvh font-sans'>{children}</div>
