@@ -4,6 +4,7 @@ export const site = {
   description:
     "An open source initiative to bring privacy-focused, aesthetic photobooth tools to the web.",
   heroTitle: "The Photo Booth Project",
+  url: "https://the-photobooth-project.vercel.app",
   releaseVersion: "1.0",
   releaseStatus: "Now Available",
 };

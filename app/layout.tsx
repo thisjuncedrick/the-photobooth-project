@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { ThemeToggleDev } from "@/components/molecules/theme-toggle";
 import { TailwindIndicator } from "@/components/tailwind-breakpoint";
@@ -32,6 +32,19 @@ export const metadata: Metadata = {
     },
   ],
   creator: "thisjuncedrick",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: site.url,
+    title: site.longname,
+    description: site.description,
+    siteName: site.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.longname,
+    images: [`${site.url}/og.jpg`],
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -41,6 +54,13 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({
