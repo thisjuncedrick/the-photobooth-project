@@ -28,14 +28,14 @@ export default function HomePage() {
 
             <h1
               id='hero-heading'
-              className='text-6xl leading-[0.9] font-black text-pretty uppercase sm:text-8xl lg:text-9xl'
+              className='text-6xl leading-[0.9] font-black tracking-normal text-pretty uppercase sm:text-8xl lg:text-9xl'
             >
               {site.heroTitle}
             </h1>
 
             <Separator className='bg-primary h-2! w-1/2!' decorative />
 
-            <p className='text-secondary-foreground leading-relaxed tracking-[0.08em] sm:text-lg'>
+            <p className='text-secondary-foreground text-lg sm:text-xl'>
               {site.description}
             </p>
 
@@ -99,15 +99,17 @@ export default function HomePage() {
         <div className='px-6 py-20 text-center sm:px-12 sm:text-left lg:px-18'>
           <h2
             id='cta-heading'
-            className='text-6xl leading-[0.9] font-black text-pretty uppercase sm:text-8xl lg:text-9xl'
+            className='text-6xl font-black text-pretty uppercase sm:text-8xl lg:text-9xl'
           >
-            <span className='text-primary block'>Your Studio.</span>
-            <span className='block'>Any where.</span>
+            <span className='text-primary block leading-[0.9] tracking-normal'>
+              Your Studio.
+            </span>
+            <span className='block leading-[0.9] tracking-normal'>Any where.</span>
           </h2>
         </div>
 
         <div className='flex flex-col items-center justify-center gap-6 px-6 py-20 text-center sm:items-start sm:px-12 sm:text-left lg:px-18'>
-          <p className='text-secondary-foreground text-lg leading-relaxed tracking-[0.08em] sm:text-2xl'>
+          <p className='text-secondary-foreground text-lg sm:text-2xl'>
             Ready to Capture? Start creating memorable photo strips in seconds. No setup
             required—just click, pose, and print.
           </p>

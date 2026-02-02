@@ -7,6 +7,7 @@ import { FilterItem } from "../molecules/filter-item";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 import { CSSGramFilters } from "@/config/options";
+import { useCameraStore } from "@/stores/camera-store";
 
 const SectionHeader = () => (
   <header className='text-primary h-(--panel-header-height) border-b lg:aspect-square lg:h-(--filter-card-size) lg:border-r lg:border-b-0'>
@@ -15,7 +16,7 @@ const SectionHeader = () => (
         className='hidden rotate-90 lg:inline-flex'
         aria-hidden='true'
       />
-      <h2 id='filters-title' className='text-sm font-medium tracking-[0.08em] uppercase'>
+      <h2 id='filters-title' className='text-sm font-bold uppercase'>
         Filters
       </h2>
     </div>
@@ -24,15 +25,17 @@ const SectionHeader = () => (
 
 const FilterListScroll = () => {
   const { activeFilter, setActiveFilter } = useBoothContext();
+  const isAvailable = useCameraStore((s) => !s.error && s.isVideoReady);
 
   return (
-    <ul className='flex gap-3 p-3 lg:gap-0 lg:p-0'>
+    <ul className={"flex gap-3 p-3 lg:gap-0 lg:p-0"}>
       {CSSGramFilters.map((filter, i) => (
         <FilterItem
           filterClass={filter}
           key={i}
           active={filter === activeFilter}
           onFilterSelect={setActiveFilter}
+          disabled={!isAvailable}
         />
       ))}
     </ul>

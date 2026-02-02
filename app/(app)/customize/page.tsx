@@ -1,4 +1,5 @@
 import { IconArrowLeft } from "@tabler/icons-react";
+import { Metadata } from "next";
 
 import { GridBackground } from "@/components/atoms/grid-background";
 import { LinkButton } from "@/components/atoms/link-button";
@@ -6,12 +7,17 @@ import {
   ExportControls,
   FooterTextControl,
   MetadataControls,
+  ReturnHomeControl,
   StripColorControl,
 } from "@/components/molecules/customize-controls";
 import { CustomizeControlSection } from "@/components/molecules/customize-option";
 import { PrintPreview } from "@/components/organisms/print-preview";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+
+export const metadata: Metadata = {
+  title: "Customize Strip",
+};
 
 export default function PrintPage() {
   return (
@@ -57,6 +63,7 @@ export default function PrintPage() {
             <FooterTextControl />
             <MetadataControls />
             <ExportControls />
+            <ReturnHomeControl />
           </CustomizeControlSection>
         </aside>
       </ScrollArea>

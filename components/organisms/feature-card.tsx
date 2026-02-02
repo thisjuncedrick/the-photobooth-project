@@ -21,10 +21,10 @@ const FeatureCard = ({
       aria-hidden='true'
       className='text-primary mx-auto size-(--text-5xl) sm:mr-auto sm:ml-0'
     />
-    <h3 className='mb-6 text-3xl font-bold tracking-tight'>{header}</h3>
+    <h3 className='mb-6 text-3xl font-bold tracking-normal'>{header}</h3>
     <p
       className={cn(
-        "text-secondary-foreground text-base leading-relaxed tracking-[0.08em] sm:text-lg",
+        "text-secondary-foreground text-base sm:text-lg",
         "group-hover:text-secondary-foreground transition-colors duration-500",
       )}
     >

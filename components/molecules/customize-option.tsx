@@ -28,7 +28,7 @@ const CustomizeControl = ({ label, className, children }: CustomizeControlProps)
           <h3
             id={id}
             className={cn(
-              "text-primary text-sm leading-relaxed font-medium tracking-[0.08em] uppercase",
+              "text-primary text-sm font-medium uppercase",
               "before:mr-2 before:tabular-nums before:content-[counter(section,decimal-leading-zero)'.']",
             )}
           >

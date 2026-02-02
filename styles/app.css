@@ -51,6 +51,8 @@
   text-wrap: balance;
   white-space: pre-wrap;
   overflow-wrap: break-word;
+  line-height: 1;
+  letter-spacing: 1;
 }
 
 .photo-wrapper {
@@ -97,4 +99,6 @@
   width: 100%;
   font-size: var(--font-size-sub);
   opacity: 0.7;
+  line-height: 1;
+  letter-spacing: 1;
 }

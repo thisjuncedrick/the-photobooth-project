@@ -17,7 +17,7 @@ const FilterPreview = ({ filterClass }: { filterClass: string }) => {
         />
       </div>
       <div className='flex h-full items-center justify-center'>
-        <span className='line-clamp-1 w-full text-center text-[10px] font-bold tracking-[0.08em] uppercase'>
+        <span className='line-clamp-1 w-full text-center text-[10px] font-bold uppercase'>
           {filterClass}
         </span>
       </div>
@@ -25,33 +25,40 @@ const FilterPreview = ({ filterClass }: { filterClass: string }) => {
   );
 };
 
+interface FilterItemProps {
+  active: boolean;
+  filterClass: string;
+  onFilterSelect: (filterClass: string) => void;
+  disabled?: boolean;
+}
+
 const FilterItem = React.memo(
-  ({
-    active,
-    filterClass,
-    onFilterSelect,
-  }: {
-    active: boolean;
-    filterClass: string;
-    onFilterSelect: (filterClass: string) => void;
-  }) => {
+  ({ active, filterClass, onFilterSelect, disabled }: FilterItemProps) => {
     return (
       <li
         className={cn(
           "text-primary aspect-square h-[calc(var(--filter-card-size)*0.9)] sm:h-(--filter-card-size)",
           "border transition-colors duration-200 lg:border-0 lg:border-r lg:pb-2",
-          { "focus-within:bg-muted focus-within:text-muted-foreground": !active },
-          { "hover:bg-muted hover:text-muted-foreground": !active },
+          {
+            "focus-within:bg-muted focus-within:text-muted-foreground":
+              !active && !disabled,
+          },
+          { "hover:bg-muted hover:text-muted-foreground": !active && !disabled },
           { "bg-primary text-primary-foreground": active },
+          { "cursor-not-allowed opacity-50": disabled },
         )}
       >
         <button
           type='button'
           aria-pressed={active}
-          tabIndex={active ? -1 : undefined}
+          aria-disabled={disabled}
           aria-label={`Apply filter`}
-          className='relative flex size-full flex-col outline-none'
+          tabIndex={disabled || active ? -1 : undefined}
+          disabled={disabled}
           onClick={() => onFilterSelect(filterClass)}
+          className={cn("relative flex size-full flex-col outline-none", {
+            "pointer-events-none": disabled,
+          })}
         >
           <FilterPreview filterClass={filterClass} />
         </button>

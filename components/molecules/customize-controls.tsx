@@ -27,7 +27,9 @@ import {
   type CustomizeStoreState,
   useCustomizeStore,
 } from "@/stores/customize-store";
+import { LinkButton } from "../atoms/link-button";
 import { useCustomizerContext } from "../customizer-provider";
+import { Separator } from "../ui/separator";
 
 const ColorInput = () => {
   const { color, setColor } = useCustomizeStore(
@@ -205,7 +207,7 @@ const ExportControls = () => {
       <div className='flex items-center gap-3'>
         <Button
           size='sm'
-          variant='outline'
+          variant='secondary'
           className='flex-1'
           aria-label='Print document'
           onClick={onPrintClick}
@@ -216,7 +218,7 @@ const ExportControls = () => {
 
         <Button
           size='sm'
-          variant='outline'
+          variant='secondary'
           className='flex-1'
           aria-label='Download as GIF file'
           onClick={onDownloadGifClick}
@@ -229,4 +231,21 @@ const ExportControls = () => {
   );
 };
 
-export { ExportControls, FooterTextControl, MetadataControls, StripColorControl };
+const ReturnHomeControl = () => (
+  <>
+    <Separator />
+    <section>
+      <LinkButton href='/' variant='outline' className='w-full'>
+        Return to Homepage
+      </LinkButton>
+    </section>
+  </>
+);
+
+export {
+  ExportControls,
+  FooterTextControl,
+  MetadataControls,
+  ReturnHomeControl,
+  StripColorControl,
+};

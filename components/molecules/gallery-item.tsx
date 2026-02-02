@@ -58,7 +58,7 @@ const UploadItem = React.memo(() => {
         aria-label='Upload a photo - opens file picker'
       >
         <IconPhotoFilled aria-hidden='true' className='mb-2' />
-        <span className='text-xs font-medium tracking-[0.08em]'>Add Photo</span>
+        <span className='text-xs font-medium'>Add Photo</span>
       </button>
 
       <input

@@ -27,10 +27,7 @@ const GalleryList = () => {
 
 const SectionHeader = () => (
   <header className='text-primary flex h-(--panel-header-height) shrink-0 items-center justify-between gap-3 px-3 lg:h-[calc(var(--panel-header-height)*1.5)] lg:px-6'>
-    <h2
-      id='session-gallery-title'
-      className='text-sm font-medium tracking-[0.08em] uppercase'
-    >
+    <h2 id='session-gallery-title' className='text-sm font-bold uppercase'>
       Session Gallery
     </h2>
 
@@ -47,7 +44,7 @@ const SectionFooter = () => {
       <Button
         type='button'
         onClick={clearImages}
-        className='text-[10px] font-bold tracking-[0.08em] uppercase'
+        className='text-[10px] font-bold uppercase'
         size='xs'
         variant='ghost'
         disabled={!hasImage}

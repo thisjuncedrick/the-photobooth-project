@@ -10,9 +10,7 @@ import { FooterStyle } from "@/types";
 const PhotoStripBranding = () => (
   <header className='strip-header'>
     <AppIcon aria-hidden='true' />
-    <p className='brand leading-relaxed font-bold tracking-[0.08em] uppercase opacity-70'>
-      {site.name}
-    </p>
+    <p className='brand font-bold uppercase opacity-70'>{site.name}</p>
   </header>
 );
 

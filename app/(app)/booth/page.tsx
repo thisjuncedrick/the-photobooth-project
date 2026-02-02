@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { CSSProperties } from "react";
 
 import { CountdownLabel, ErrorLabel, FilterLabel } from "@/components/molecules/labels";
@@ -10,6 +11,10 @@ import { FlashOverlay } from "@/components/atoms/flash-overlay";
 import { LinkButton } from "@/components/atoms/link-button";
 import { cn } from "@/lib/utils";
 import { IconArrowLeft } from "@tabler/icons-react";
+
+export const metadata: Metadata = {
+  title: "Booth",
+};
 
 export default function BoothPage() {
   return (

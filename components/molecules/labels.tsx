@@ -17,7 +17,7 @@ const ErrorLabel = () => {
       aria-live='assertive'
       aria-atomic='true'
     >
-      <div className='rounded-md bg-black/80 px-3 py-2 text-center leading-relaxed tracking-[0.08em] text-white'>
+      <div className='rounded-md bg-black/80 px-3 py-2 text-center text-white'>
         <p className='text-destructive mb-3 line-clamp-5 text-sm uppercase sm:text-lg'>
           {error.message}
         </p>
@@ -42,7 +42,7 @@ const CountdownLabel = () => {
       aria-atomic='true'
     >
       <div className='flex aspect-square size-18 items-center justify-center rounded-full bg-black/80 text-center text-white sm:size-28'>
-        <span className='line-clamp-1 text-4xl font-bold tracking-[0.08em] uppercase tabular-nums sm:text-6xl'>
+        <span className='line-clamp-1 text-4xl font-bold uppercase tabular-nums sm:text-6xl'>
           {remaining}
         </span>
       </div>
