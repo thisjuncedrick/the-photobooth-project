@@ -1,4 +1,4 @@
-import { IconArrowRight, IconRocket } from "@tabler/icons-react";
+import { IconArrowRight, IconCode, IconRocket } from "@tabler/icons-react";
 
 import { LinkButton } from "@/components/atoms/link-button";
 import { ReleaseBadge } from "@/components/molecules/release-badge";
@@ -39,13 +39,27 @@ export default function HomePage() {
               {site.description}
             </p>
 
-            <LinkButton
-              href='/booth'
-              className='h-auto w-full gap-2 px-5 py-2 text-lg uppercase sm:w-fit'
-            >
-              <IconRocket className='size-(--text-lg)' aria-hidden='true' />
-              <span>Launch App</span>
-            </LinkButton>
+            <div className='flex w-full flex-col items-center gap-8 sm:w-fit sm:flex-row'>
+              <LinkButton
+                href='/booth'
+                className='h-auto w-full gap-2 px-5 py-2 text-lg uppercase sm:w-fit'
+              >
+                <IconRocket className='size-(--text-lg)' aria-hidden='true' />
+                <span>Launch App</span>
+              </LinkButton>
+
+              <LinkButton
+                href='https://github.com/thisjuncedrick/the-photobooth-project'
+                className='w-full sm:h-auto sm:w-fit sm:gap-2 sm:px-5 sm:py-2 sm:text-lg'
+                variant='outline'
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='Open Github repository (opens new tab)'
+              >
+                <IconCode aria-hidden='true' />
+                <span>Source Code</span>
+              </LinkButton>
+            </div>
           </div>
         </div>
 

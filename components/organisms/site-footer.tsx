@@ -50,7 +50,7 @@ const SiteFooter = () => {
                 </li>
                 <li>
                   <a
-                    href='https://github.com'
+                    href='https://github.com/thisjuncedrick/the-photobooth-project/issues'
                     target='_blank'
                     rel='noopener noreferrer'
                     aria-label='Report bug (opens new tab)'
