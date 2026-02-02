@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Photobooth Project
 
-## Getting Started
+The Photobooth Project is a fully client-side image capture and processing application designed to **protect user privacy**. All captured images, filters, and generated outputs are processed entirely in-browser on the user’s device. **No third-party servers are involved**, and all temporary data is cleared automatically when the session ends.
 
-First, run the development server:
+<img src="https://api.microlink.io/?url=https://the-photobooth-project.vercel.app&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=light&overlay.background=linear-gradient%28315deg%2C%20%23610033%200%25%2C%20%23df3e4c%2050%25%2C%20%23dc949e%20100%25%29" />
+
+---
+
+## Features
+
+- Client-side image processing only (no data leaves your device)
+- Webcam capture and file upload support
+- Real-time CSS-based filters (**[CSSGram by Una](https://una.github.io/CSSgram/)**)
+- Customizable photo strips (background color, footer text, layout)
+- 1–4 image strip generation
+- GIF generation from captured images
+- Session gallery in memory (cleared on page refresh or exit)
+- Export as PNG or GIF, or print directly from the device
+- All generated content is **copyright-free** for user use
+- Cross-browser support on modern browsers
+
+---
+
+## Technology Stack
+
+- **Framework:** Next.js
+- **UI:** ShadCN
+- **Styling:** Tailwind CSS
+- **Image Generation:** html-to-image
+- **GIF Generation:** gifshot
+- **Filters:** CSS filters using **[CSSGram by Una](https://una.github.io/CSSgram/)**
+
+---
+
+## Prerequisites
+
+- **Node.js:** v24.12.0+
+- **Package Manager:** pnpm
+- **Browser:** Modern browser with Canvas API support
+  - Note: Camera permissions may need to be enabled differently depending on the browser being used.
+
+---
+
+## Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [REPOSITORY_URL]
+cd the-photobooth-project
+pnpm install
+pnpm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Application runs at:
+`http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm run dev      # Run development server
+pnpm run build    # Build for production
+pnpm run start    # Start production server
+pnpm run lint     # Run linter
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Open the application
+2. Select input method: webcam or upload an image
+3. Apply filters in real-time
+4. Capture 1–4 images
+5. Customize strip layout, background color, and footer text
+6. Generate a PNG, GIF, or print directly
+7. Session gallery allows previewing images, stored **only in memory**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## How It Works
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- The `<video>` feed or uploaded image is rendered into a **hidden node element**, styled and filtered the same way as the preview element.
+- Filters are applied to both the preview and hidden node via CSS classes, provided by [CSSGram](https://una.github.io/CSSgram/).
+- `html-to-image` captures the hidden node as a **PNG blob URL**.
+- Images are compiled into strips or GIFs entirely in-browser.
+- Blob URLs are revoked after use to ensure no data persistence.
+- All processing happens **locally**—nothing is sent to external servers.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Browser Compatibility
+
+**Supported:**
+Chrome, Edge, Firefox, Safari, modern mobile browsers
+
+**Caution:**
+Legacy browsers or those without **Canvas API or modern JS support** may not function correctly.
+
+---
+
+## Contributing
+
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
