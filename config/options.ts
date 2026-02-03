@@ -67,14 +67,17 @@ export const StripLayout: StripLayoutConfig = {
 };
 
 export const CustomizerSettings: CustomizeStoreState = {
+  background: "#FFFFFF",
   color: "#FFFFFF",
   isRounded: false,
   footerText: site.name,
-  footerStyle: ["isBold"],
+  footerStyle: ["isBold", "isUppercase"],
   isSupported: true,
   isWhiteText: false,
   hasTimestamp: false,
 };
+
+const PresetFrameTotal = 10;
 
 const PresetColors = [
   "#FFB3BA",
@@ -91,4 +94,5 @@ const PresetColors = [
 
 export const PrintOptions = {
   Color: PresetColors,
+  PatternCount: PresetFrameTotal,
 };

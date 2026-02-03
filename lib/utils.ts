@@ -29,3 +29,11 @@ export const getTimestamp = (): {
 
   return { date, time, iso };
 };
+
+export const getPatternCSS = (
+  patternIndex: number,
+  total: number,
+  imagePath = "images/patterns.png",
+): string => {
+  return `url(${imagePath}) calc(${patternIndex - 1} * -100%) 0px / ${total * 100}% auto repeat`;
+};

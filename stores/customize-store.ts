@@ -1,8 +1,10 @@
-import { site } from "@/config/site";
+import { CustomizerSettings } from "@/config/options";
 import { type FooterStyle } from "@/types";
+import { CSSProperties } from "react";
 import { create } from "zustand";
 
 export interface CustomizeStoreState {
+  background: CSSProperties["background"];
   color: string;
   isRounded: boolean;
   footerText: string;
@@ -13,6 +15,7 @@ export interface CustomizeStoreState {
 }
 
 export interface CustomizeStoreActions {
+  setBackground: (background: CSSProperties["background"]) => void;
   setColor: (color: string) => void;
   setIsRounded: (isRounded: boolean) => void;
   setFooterText: (footerText: string) => void;
@@ -25,15 +28,9 @@ export interface CustomizeStoreActions {
 
 export const useCustomizeStore = create<CustomizeStoreState & CustomizeStoreActions>(
   (set) => ({
-    color: "#ffffff",
-    sticker: "",
-    isRounded: false,
-    footerText: site.name,
-    footerStyle: ["isBold", "isUppercase"],
-    isSupported: true,
-    isWhiteText: false,
-    hasTimestamp: false,
+    ...CustomizerSettings,
 
+    setBackground: (background) => set({ background }),
     setColor: (color) => set({ color }),
     setIsRounded: (isRounded) => set({ isRounded }),
     setFooterText: (footerText) => set({ footerText }),

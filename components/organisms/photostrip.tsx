@@ -54,7 +54,7 @@ const PhotoStrip = React.forwardRef<HTMLDivElement, PhotoStripProps>(
   ({ children, className, style }, ref) => (
     <div
       ref={ref}
-      className={cn("strip-container transition-colors duration-300 ease-out", className)}
+      className={cn("strip-container", className)}
       style={style}
       aria-roledescription='Photo Strip'
     >

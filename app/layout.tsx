@@ -80,7 +80,7 @@ export default function RootLayout({
           ></script>
         )}
       </head>
-      <body className='antialiased'>
+      <body className='antialiased select-none'>
         <ThemeProvider defaultTheme='light' attribute='class' disableTransitionOnChange>
           <div className='min-h-dvh font-sans'>{children}</div>
           {IS_DEV_MODE && (

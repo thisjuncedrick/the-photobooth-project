@@ -77,8 +77,8 @@ const PhotoGallery = () => {
 };
 
 const PrintPreviewStrip = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-  const { backgroundColor, isWhiteText } = useCustomizeStore(
-    useShallow((s) => ({ backgroundColor: s.color, isWhiteText: s.isWhiteText })),
+  const { background, isWhiteText } = useCustomizeStore(
+    useShallow((s) => ({ background: s.background, isWhiteText: s.isWhiteText })),
   );
   const { containerRef } = useCustomizerContext();
 
@@ -93,7 +93,7 @@ const PrintPreviewStrip = ({ children }: Readonly<{ children: React.ReactNode }>
         style={{
           "--img-width": `${imgWidth}px`,
           "--scale-factor": scaleFactor,
-          backgroundColor,
+          background,
           color: isWhiteText ? "#FFFFFF" : "#000000",
         }}
         ref={containerRef}

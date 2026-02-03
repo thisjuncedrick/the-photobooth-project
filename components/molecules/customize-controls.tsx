@@ -22,6 +22,7 @@ import { CustomizeControl } from "./customize-option";
 import { SwitchField } from "./switch-field";
 
 import { PrintOptions } from "@/config/options";
+import { getPatternCSS } from "@/lib/utils";
 import {
   type CustomizeStoreActions,
   type CustomizeStoreState,
@@ -32,12 +33,9 @@ import { useCustomizerContext } from "../customizer-provider";
 import { Separator } from "../ui/separator";
 
 const ColorInput = () => {
-  const { color, setColor } = useCustomizeStore(
-    useShallow((s) => ({
-      color: s.color,
-      setColor: s.setColor,
-    })),
-  );
+  const color = useCustomizeStore((s) => s.color);
+  const setColor = useCustomizeStore((s) => s.setColor);
+  const setBackground = useCustomizeStore((s) => s.setBackground);
 
   return (
     <Field>
@@ -48,7 +46,10 @@ const ColorInput = () => {
         id='custom-color-input'
         type='color'
         value={color}
-        onChange={(e) => setColor(e.target.value)}
+        onChange={(e) => {
+          setColor(e.target.value);
+          setBackground(e.target.value);
+        }}
         className='h-10 p-0'
         aria-label='Select custom paper color'
       />
@@ -58,21 +59,36 @@ const ColorInput = () => {
 
 const ColorPreset = () => {
   const setColor = useCustomizeStore((s) => s.setColor);
+  const setBackground = useCustomizeStore((s) => s.setBackground);
 
   return (
     <div className='grid grid-cols-5 gap-2' aria-label='Preset paper colors'>
-      {PrintOptions.Color.map((color, i) => (
+      {PrintOptions.Color.map((backgroundColor, i) => (
         <button
-          key={`${color}-${i}`}
+          key={i}
           type='button'
-          className='focus-visible:border-ring border-border focus-visible:ring-ring/50 h-10 flex-1 rounded-md transition-all outline-none focus-visible:ring-[3px]'
-          style={{ backgroundColor: color }}
-          aria-label={`Select ${color} background`}
-          onClick={() => setColor(color)}
-        >
-          <span className='sr-only'>{color}</span>
-        </button>
+          className='focus-visible:border-ring border-border focus-visible:ring-ring/50 h-10 flex-1 rounded-md border transition-all outline-none focus-visible:ring-[3px]'
+          style={{ backgroundColor }}
+          onClick={() => {
+            setColor(backgroundColor);
+            setBackground(backgroundColor);
+          }}
+        ></button>
       ))}
+
+      {Array.from({ length: PrintOptions.PatternCount }).map((_, frameIndex) => {
+        const background = getPatternCSS(frameIndex, PrintOptions.PatternCount);
+
+        return (
+          <button
+            key={frameIndex}
+            type='button'
+            className='focus-visible:border-ring border-border focus-visible:ring-ring/50 h-10 flex-1 rounded-md border transition-all outline-none focus-visible:ring-[3px]'
+            style={{ background }}
+            onClick={() => setBackground(background)}
+          ></button>
+        );
+      })}
     </div>
   );
 };
