@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 import { LegalPageTemplate } from "@/components/templates/legal";
-import { PrivacySections } from "@/config/privacy";
+import { Privacy } from "@/config/privacy";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -11,12 +11,13 @@ export default function PrivacyPage() {
   return (
     <LegalPageTemplate
       title='Privacy Policy'
+      lastUpdate={Privacy.LastUpdate}
       aside={
         <>
           <h2 className='text-primary font-bold uppercase'>Section Guide</h2>
 
           <ol className='list-inside list-decimal'>
-            {PrivacySections.map(({ title, anchor }) => (
+            {Privacy.Sections.map(({ title, anchor }) => (
               <li
                 key={anchor}
                 className='text-muted-foreground hover:text-foreground w-fit'
@@ -28,7 +29,7 @@ export default function PrivacyPage() {
         </>
       }
     >
-      {PrivacySections.map(({ title, anchor, content }) => (
+      {Privacy.Sections.map(({ title, anchor, content }) => (
         <section key={anchor} id={anchor} className='py-6 [counter-increment:section]'>
           <h3 className='text-primary mb-3 text-lg font-bold before:mr-2 before:tabular-nums before:content-[counter(section)"."] sm:text-2xl'>
             {title}

@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 
 import { ThemeToggleDev } from "@/components/molecules/theme-toggle";
@@ -90,6 +91,7 @@ export default function RootLayout({
             </>
           )}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

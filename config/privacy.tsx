@@ -1,4 +1,5 @@
-export const PrivacySections: {
+const LastUpdate = "February 03, 2026";
+const Sections: {
   title: string;
   anchor: string;
   content: React.ReactNode;
@@ -21,9 +22,15 @@ export const PrivacySections: {
     anchor: "information-we-process",
     content: (
       <>
-        The app only processes images you capture with your camera or upload yourself. No
-        other personal information, such as{" "}
-        <span className='italic'>names, emails, or IP addresses</span>, is collected.
+        The app processes images you capture with your camera or upload yourself, solely
+        for generating photo strips or GIFs on your device.
+        <br />
+        <br />
+        In addition, the app collects{" "}
+        <span className='font-bold'>anonymous usage data</span>, such as page views and
+        navigation events, through Vercel Web Analytics. This data does{" "}
+        <span className='italic'>not</span> include names, email addresses, uploaded
+        images, or personally identifiable information.
       </>
     ),
   },
@@ -44,8 +51,35 @@ export const PrivacySections: {
     anchor: "data-sharing",
     content: (
       <>
-        Your images are <span className='font-bold'>never sent to third parties</span>.
-        The app does not use analytics, tracking, or cookies.
+        Image data is <span className='font-bold'>never transmitted</span> to any server
+        or third party and remains on your device at all times.
+        <br />
+        <br />
+        Anonymous usage data is shared with <span className='font-bold'>Vercel</span>{" "}
+        solely for analytics purposes, in accordance with{" "}
+        <a
+          href='https://vercel.com/docs/analytics/privacy-policy'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='underline'
+        >
+          Vercel's Analytics Privacy Policy
+        </a>
+        .
+      </>
+    ),
+  },
+  {
+    title: "Analytics",
+    anchor: "analytics",
+    content: (
+      <>
+        This app uses <span className='font-bold'>Vercel Web Analytics</span> to
+        understand general usage patterns, such as page views and navigation flow.
+        <br />
+        <br />
+        Analytics data is collected without cookies and without identifying individual
+        users. No image content or user-generated media is included in analytics data.
       </>
     ),
   },
@@ -65,8 +99,12 @@ export const PrivacySections: {
     anchor: "cookies",
     content: (
       <>
-        No cookies or session tracking are used. Each session (i.e., photos captured or
-        uploaded) exists only in memory and is cleared when you leave or refresh the page.
+        This app does not use cookies for analytics or tracking. Vercel Web Analytics
+        operates without setting cookies by default.
+        <br />
+        <br />
+        Session-related data, such as captured or uploaded images, exists only in memory
+        and is cleared when you refresh or leave the page.
       </>
     ),
   },
@@ -75,9 +113,12 @@ export const PrivacySections: {
     anchor: "security",
     content: (
       <>
-        All processing happens entirely on your device. Nothing is transmitted externally,
-        minimizing privacy risks. For best safety, please use an up-to-date and secure
-        browser.
+        Image processing and generation occur entirely on your device. Uploaded or
+        captured images are never sent to external servers.
+        <br />
+        <br />
+        Anonymous analytics requests are securely handled by Vercel. Users are encouraged
+        to use an up-to-date and secure browser.
       </>
     ),
   },
@@ -103,3 +144,5 @@ export const PrivacySections: {
     ),
   },
 ];
+
+export const Privacy = { LastUpdate, Sections };
