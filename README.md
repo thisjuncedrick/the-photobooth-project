@@ -10,7 +10,7 @@ The Photobooth Project is a fully client-side image capture and processing appli
 
 - Client-side image processing only (no data leaves your device)
 - Webcam capture and file upload support
-- Real-time CSS-based filters (**[CSSGram by Una](https://una.github.io/CSSgram/)**)
+- Real-time CSS-based filters
 - Customizable photo strips (background color, footer text, layout)
 - 1–4 image strip generation
 - GIF generation from captured images
@@ -79,7 +79,7 @@ pnpm run lint     # Run linter
 ## How It Works
 
 - The `<video>` feed or uploaded image is rendered into a **hidden node element**, styled and filtered the same way as the preview element.
-- Filters are applied to both the preview and hidden node via CSS classes, provided by [CSSGram](https://una.github.io/CSSgram/).
+- Filters are applied to both the preview and hidden node via CSS classes
 - `html-to-image` captures the hidden node as a **PNG blob URL**.
 - Images are compiled into strips or GIFs entirely in-browser.
 - Blob URLs are revoked after use to ensure no data persistence.
@@ -106,3 +106,9 @@ Contributions are welcome! If you have any ideas, suggestions, or bug reports, p
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+---
+
+## Attributions
+
+This project uses copyright-free materials. See the [ATTRIBUTIONS](ATTRIBUTIONS.md) file for detailed credits.
